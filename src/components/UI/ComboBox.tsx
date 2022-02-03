@@ -9,7 +9,7 @@ interface ProblemCategories{
 
 export default function ComboBox({list, description, onChange}: ProblemCategories) {
   return (
-  <div className="form-group">
+  <div className="form-group" style={{width: '50%', marginLeft: 'auto', marginRight: 'auto'}}>
       <label>Проблемная категория
         <select id="inputState" className="form-control" onChange={onChange}>
             <option defaultValue="0" selected>Выберите категорию</option>

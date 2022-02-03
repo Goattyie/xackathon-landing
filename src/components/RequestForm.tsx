@@ -53,7 +53,7 @@ export default function RequestForm() {
       const data = {'fio': name, 'phone': phone, 'source': 'telegram', 'content': [], 'problemCategories': [categoryId], 'location': address, 'latitude': 0, 'longitude': 0, 'description': description, 'email': email}
       const json = JSON.stringify(data);
       console.log(json);
-      xhr.open('post', 'http://localhost:5000/requests', false);
+      /* xhr.open('post', 'http://localhost:5000/requests', false);
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       xhr.send(json);
       if(xhr.status == 200){
@@ -64,7 +64,7 @@ export default function RequestForm() {
         setDescription('');
         setEmail('');
         setShowError(false);
-      }
+      }*/
     }
   }
   function isValid() : boolean{
@@ -101,12 +101,12 @@ export default function RequestForm() {
     let list : ProblemCategory[] = [];
     let xhr = new XMLHttpRequest();
 
-    xhr.open('get', 'http://localhost:5000/problem-categories', false);
+    /* xhr.open('get', 'http://localhost:5000/problem-categories', false);
 
     xhr.send();
     if(xhr.status == 200){
       list = (JSON.parse(xhr.response)).data as ProblemCategory[];
-    }
+    }*/
   
     return list;
   }
@@ -114,15 +114,17 @@ export default function RequestForm() {
   return (
   <div className='center'>
     <form onSubmit={createRequest}>
-      <TextBox labelName='ФИО:' inputPlaceholder='Введие ваше настоящее ФИО' description='Фамилия имя отчество' onChange={onChangeName}/>
-      <TextBox labelName='Телефон:' inputPlaceholder='+380xxxxxxxx' description='Номер телефона оператора Phoenix' onKeyDown={onKeyPressPhone} value={phone}/>
-      <ComboBox list={categoryList} description='Выберите категорию проблемы' onChange={onChangeCategory}/>
+      <br/><br/><br/><br/>
+      <TextBox labelName='ФИО:' inputPlaceholder='Введие ваше настоящее ФИО' description='Фамилия имя отчество' onChange={onChangeName}/><br/>
+      <TextBox labelName='Телефон:' inputPlaceholder='+380XXXXXXXX' description='Номер телефона оператора Phoenix' onKeyDown={onKeyPressPhone} value={phone}/><br/>
+      <ComboBox list={categoryList} description='Выберите категорию проблемы' onChange={onChangeCategory}/><br/>
+      <h6 style={{width: '50%', marginLeft: 'auto', marginRight: 'auto'}}>Выберите картинки</h6>
       <FileButton description='Выберите картинки'/>
-      <TextBox labelName='Описание:' inputPlaceholder='Введите текст' description='Описание запроса' onChange={onChangeDescription}/>
-      <TextBox labelName='Адрес:' inputPlaceholder='Введите адрес проблемной ситуации' description='Местоположение проблемы' onChange={onChangeAddress}/>
-      <TextBox labelName='Электронная почта' inputPlaceholder='xxx@xxx.xx' description='почта для обратной связи' onChange={onChangeEmail}/>
+      <TextBox labelName='Описание:' inputPlaceholder='Введите текст' description='Описание запроса' onChange={onChangeDescription}/><br/>
+      <TextBox labelName='Адрес:' inputPlaceholder='Введите адрес проблемной ситуации' description='Местоположение проблемы' onChange={onChangeAddress}/><br/>
+      <TextBox labelName='Электронная почта' inputPlaceholder='mail@example.com' description='Почта для обратной связи' onChange={onChangeEmail}/><br/>
       <label className={showError == false ? 'hidden' : 'alert-danger' }>{error}</label>
-      <SubmitButton description='Отправить заявку'/>
+      <SubmitButton description='Отправить заявку'/><br/>
       </form>
   </div>);
 }
