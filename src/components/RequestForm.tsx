@@ -53,7 +53,7 @@ export default function RequestForm() {
       const data = {'fio': name, 'phone': phone, 'source': 'telegram', 'content': [], 'problemCategories': [categoryId], 'location': address, 'latitude': 0, 'longitude': 0, 'description': description, 'email': email}
       const json = JSON.stringify(data);
       console.log(json);
-      /* xhr.open('post', 'http://localhost:5000/requests', false);
+      xhr.open('post', 'http://localhost:5000/requests', false);
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       xhr.send(json);
       if(xhr.status == 200){
@@ -64,7 +64,7 @@ export default function RequestForm() {
         setDescription('');
         setEmail('');
         setShowError(false);
-      }*/
+      }
     }
   }
   function isValid() : boolean{
@@ -101,12 +101,12 @@ export default function RequestForm() {
     let list : ProblemCategory[] = [];
     let xhr = new XMLHttpRequest();
 
-    /* xhr.open('get', 'http://localhost:5000/problem-categories', false);
+    xhr.open('get', 'http://localhost:5000/problem-categories', false);
 
     xhr.send();
     if(xhr.status == 200){
       list = (JSON.parse(xhr.response)).data as ProblemCategory[];
-    }*/
+    }
   
     return list;
   }
@@ -114,8 +114,8 @@ export default function RequestForm() {
   return (
   <div className='center'>
     <form onSubmit={createRequest}>
-      <br/><br/><br/><br/>
-      <TextBox labelName='ФИО:' inputPlaceholder='Введие ваше настоящее ФИО' description='Фамилия имя отчество' onChange={onChangeName}/><br/>
+      <br/><br/><br/>
+      <TextBox labelName='ФИО:' inputPlaceholder='Введите ваше настоящее ФИО' description='Фамилия имя отчество' onChange={onChangeName}/><br/>
       <TextBox labelName='Телефон:' inputPlaceholder='+380XXXXXXXX' description='Номер телефона оператора Phoenix' onKeyDown={onKeyPressPhone} value={phone}/><br/>
       <ComboBox list={categoryList} description='Выберите категорию проблемы' onChange={onChangeCategory}/><br/>
       <h6 style={{width: '50%', marginLeft: 'auto', marginRight: 'auto'}}>Выберите картинки</h6>
